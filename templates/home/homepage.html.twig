@@ -28,7 +28,7 @@
     <link href="{{ asset('assets') }}/css/style.css" rel="stylesheet">
 
     <!-- =======================================================
-    * Template Name: Portfolio - v2.2.0
+    * Template Name: Appland - v2.2.0
     * Template URL: https://bootstrapmade.com/free-bootstrap-app-landing-page-template/
     * Author: BootstrapMade.com
     * License: https://bootstrapmade.com/license/
@@ -49,14 +49,14 @@
 
         <nav class="nav-menu d-none d-lg-block">
             <ul>
-                <li class="active"><a href="/">Home</a></li>
+                <li class="active"><a href="#hero">Home</a></li>
                 <li><a href="#features">App Features</a></li>
-                <li><a href="#gallery">Gallery</a></li>
+                <!--<li><a href="#gallery">Gallery</a></li>-->
                 <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#faq">F.A.Q</a></li>
+                <!--<li><a href="#faq">F.A.Q</a></li>-->
                 <li><a href="#contact">Contact Us</a></li>
 
-                <li class="get-started"><a href="#features">Get Started</a></li>
+                <li class="get-started"><a href="/register">Sign Up</a></li>
             </ul>
         </nav><!-- .nav-menu -->
 
@@ -70,8 +70,18 @@
         <div class="row">
             <div class="col-lg-6 d-lg-flex flex-lg-column justify-content-center align-items-stretch pt-5 pt-lg-0 order-2 order-lg-1" data-aos="fade-up">
                 <div>
-                    <h1>Portfolio Prepare your own portfolio and customize it with ease.</h1>
-                    <h2>Lorem ipsum dolor sit amet, tota senserit percipitur ius ut, usu et fastidii forensibus voluptatibus. His ei nihil feugait</h2>
+                    <h1>Easy Portfolio</h1>
+                    <h2>Create your portfolio with ease.</h2>
+                </div>
+            </div>
+            <div class="col-lg-6 d-lg-flex flex-lg-column align-items-stretch order-1 order-lg-2 hero-img" data-aos="fade-up">
+                <img src="{{ asset('assets') }}/img/hero-img.png" class="img-fluid" alt="">
+            </div>
+        </div>
+    </div>
+
+</section><!-- End Hero -->
+
 <main id="main">
 
     <!-- ======= App Features Section ======= -->
@@ -80,48 +90,30 @@
 
             <div class="section-title">
                 <h2>App Features</h2>
-                <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+                <p>This app features a personal portfolio creation.Create and customize your portfolio as how you want.By creating a portfolio we are adding you to the portoflio-pool therefore our recruiters can find you.</p>
             </div>
 
             <div class="row no-gutters">
                 <div class="col-xl-7 d-flex align-items-stretch order-2 order-lg-1">
                     <div class="content d-flex flex-column justify-content-center">
                         <div class="row">
-                            <div class="col-md-6 icon-box" data-aos="fade-up">
-                                <i class="bx bx-receipt"></i>
-                                <h4>Corporis voluptates sit</h4>
-                                <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip</p>
-                            </div>
+
                             <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="100">
                                 <i class="bx bx-cube-alt"></i>
-                                <h4>Ullamco laboris nisi</h4>
-                                <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt</p>
+                                <h4>Fully Responsive</h4>
+                                <p>Our app is fully responsive and compatible with most of the devices.</p>
                             </div>
                             <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="200">
                                 <i class="bx bx-images"></i>
-                                <h4>Labore consequatur</h4>
-                                <p>Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis facere</p>
+                                <h4>Fully dynamic</h4>
+                                <p>Create your profile now and begin customizing your portfolio.</p>
                             </div>
-                            <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="300">
-                                <i class="bx bx-shield"></i>
-                                <h4>Beatae veritatis</h4>
-                                <p>Expedita veritatis consequuntur nihil tempore laudantium vitae denat pacta</p>
-                            </div>
-                            <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="400">
-                                <i class="bx bx-atom"></i>
-                                <h4>Molestiae dolor</h4>
-                                <p>Et fuga et deserunt et enim. Dolorem architecto ratione tensa raptor marte</p>
-                            </div>
-                            <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="500">
-                                <i class="bx bx-id-card"></i>
-                                <h4>Explicabo consectetur</h4>
-                                <p>Est autem dicta beatae suscipit. Sint veritatis et sit quasi ab aut inventore</p>
-                            </div>
+
                         </div>
                     </div>
                 </div>
                 <div class="image col-xl-5 d-flex align-items-stretch justify-content-center order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
-                    <img src="../../public/assets/img/features.svg" class="img-fluid" alt="">
+                    <img src="{{ asset('assets') }}/img/features.svg" class="img-fluid" alt="">
                 </div>
             </div>
 
@@ -134,29 +126,25 @@
 
             <div class="row content">
                 <div class="col-md-4" data-aos="fade-right">
-                    <img src="../../public/assets/img/details-1.png" class="img-fluid" alt="">
+                    <img src="{{ asset('assets') }}/img/details-1.png" class="img-fluid" alt="">
                 </div>
                 <div class="col-md-8 pt-4" data-aos="fade-up">
-                    <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
+                    <h3>How it works</h3>
                     <p class="font-italic">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua.
+                        Simply you create your profile and fill your informations.We are adding your profile to our portfolio pool where recruiters from different companies can find you.Your informations are not being shared by any other third-party app.
                     </p>
                     <ul>
-                        <li><i class="icofont-check"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                        <li><i class="icofont-check"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-                        <li><i class="icofont-check"></i> Iure at voluptas aspernatur dignissimos doloribus repudiandae.</li>
-                        <li><i class="icofont-check"></i> Est ipsa assumenda id facilis nesciunt placeat sed doloribus praesentium.</li>
+                        <li><i class="icofont-check"></i> Wide range of customization</li>
+                        <li><i class="icofont-check"></i> Simple interface</li>
+                        <li><i class="icofont-check"></i> 7/24 Support</li>
                     </ul>
-                    <p>
-                        Voluptas nisi in quia excepturi nihil voluptas nam et ut. Expedita omnis eum consequatur non. Sed in asperiores aut repellendus. Error quisquam ab maiores. Quibusdam sit in officia
-                    </p>
+
                 </div>
             </div>
-
+<!--
             <div class="row content">
                 <div class="col-md-4 order-1 order-md-2" data-aos="fade-left">
-                    <img src="../../public/assets/img/details-2.png" class="img-fluid" alt="">
+                    <img src="{{ asset('assets') }}/img/details-2.png" class="img-fluid" alt="">
                 </div>
                 <div class="col-md-8 pt-5 order-2 order-md-1" data-aos="fade-up">
                     <h3>Corporis temporibus maiores provident</h3>
@@ -177,7 +165,7 @@
 
             <div class="row content">
                 <div class="col-md-4" data-aos="fade-right">
-                    <img src="../../public/assets/img/details-3.png" class="img-fluid" alt="">
+                    <img src="{{ asset('assets') }}/img/details-3.png" class="img-fluid" alt="">
                 </div>
                 <div class="col-md-8 pt-5" data-aos="fade-up">
                     <h3>Sunt consequatur ad ut est nulla consectetur reiciendis animi voluptas</h3>
@@ -198,7 +186,7 @@
 
             <div class="row content">
                 <div class="col-md-4 order-1 order-md-2" data-aos="fade-left">
-                    <img src="../../public/assets/img/details-4.png" class="img-fluid" alt="">
+                    <img src="{{ asset('assets') }}/img/details-4.png" class="img-fluid" alt="">
                 </div>
                 <div class="col-md-8 pt-5 order-2 order-md-1" data-aos="fade-up">
                     <h3>Quas et necessitatibus eaque impedit ipsum animi consequatur incidunt in</h3>
@@ -220,9 +208,9 @@
             </div>
 
         </div>
-    </section><!-- End Details Section -->
+    </section>--><!-- End Details Section -->
+<!--
 
-    <!-- ======= Gallery Section ======= -->
     <section id="gallery" class="gallery">
         <div class="container">
 
@@ -232,24 +220,24 @@
             </div>
 
             <div class="owl-carousel gallery-carousel" data-aos="fade-up">
-                <a href="../../public/assets/img/gallery/gallery-1.png" class="venobox" data-gall="gallery-carousel"><img src="../../public/assets/img/gallery/gallery-1.png" alt=""></a>
-                <a href="../../public/assets/img/gallery/gallery-2.png" class="venobox" data-gall="gallery-carousel"><img src="../../public/assets/img/gallery/gallery-2.png" alt=""></a>
-                <a href="../../public/assets/img/gallery/gallery-3.png" class="venobox" data-gall="gallery-carousel"><img src="../../public/assets/img/gallery/gallery-3.png" alt=""></a>
-                <a href="../../public/assets/img/gallery/gallery-4.png" class="venobox" data-gall="gallery-carousel"><img src="../../public/assets/img/gallery/gallery-4.png" alt=""></a>
-                <a href="../../public/assets/img/gallery/gallery-5.png" class="venobox" data-gall="gallery-carousel"><img src="../../public/assets/img/gallery/gallery-5.png" alt=""></a>
-                <a href="../../public/assets/img/gallery/gallery-6.png" class="venobox" data-gall="gallery-carousel"><img src="../../public/assets/img/gallery/gallery-6.png" alt=""></a>
-                <a href="../../public/assets/img/gallery/gallery-7.png" class="venobox" data-gall="gallery-carousel"><img src="../../public/assets/img/gallery/gallery-7.png" alt=""></a>
-                <a href="../../public/assets/img/gallery/gallery-8.png" class="venobox" data-gall="gallery-carousel"><img src="../../public/assets/img/gallery/gallery-8.png" alt=""></a>
-                <a href="../../public/assets/img/gallery/gallery-9.png" class="venobox" data-gall="gallery-carousel"><img src="../../public/assets/img/gallery/gallery-9.png" alt=""></a>
-                <a href="../../public/assets/img/gallery/gallery-10.png" class="venobox" data-gall="gallery-carousel"><img src="../../public/assets/img/gallery/gallery-10.png" alt=""></a>
-                <a href="../../public/assets/img/gallery/gallery-11.png" class="venobox" data-gall="gallery-carousel"><img src="../../public/assets/img/gallery/gallery-11.png" alt=""></a>
-                <a href="../../public/assets/img/gallery/gallery-12.png" class="venobox" data-gall="gallery-carousel"><img src="../../public/assets/img/gallery/gallery-12.png" alt=""></a>
+                <a href="../../public/assets/img/gallery/gallery-1.png" class="venobox" data-gall="gallery-carousel"><img src="{{ asset('assets') }}/img/gallery/gallery-1.png" alt=""></a>
+                <a href="../../public/assets/img/gallery/gallery-2.png" class="venobox" data-gall="gallery-carousel"><img src="{{ asset('assets') }}/img/gallery/gallery-2.png" alt=""></a>
+                <a href="../../public/assets/img/gallery/gallery-3.png" class="venobox" data-gall="gallery-carousel"><img src="{{ asset('assets') }}/img/gallery/gallery-3.png" alt=""></a>
+                <a href="../../public/assets/img/gallery/gallery-4.png" class="venobox" data-gall="gallery-carousel"><img src="{{ asset('assets') }}/img/gallery/gallery-4.png" alt=""></a>
+                <a href="../../public/assets/img/gallery/gallery-5.png" class="venobox" data-gall="gallery-carousel"><img src="{{ asset('assets') }}/img/gallery/gallery-5.png" alt=""></a>
+                <a href="../../public/assets/img/gallery/gallery-6.png" class="venobox" data-gall="gallery-carousel"><img src="{{ asset('assets') }}/img/gallery/gallery-6.png" alt=""></a>
+                <a href="../../public/assets/img/gallery/gallery-7.png" class="venobox" data-gall="gallery-carousel"><img src="{{ asset('assets') }}/img/gallery/gallery-7.png" alt=""></a>
+                <a href="../../public/assets/img/gallery/gallery-8.png" class="venobox" data-gall="gallery-carousel"><img src="{{ asset('assets') }}/img/gallery/gallery-8.png" alt=""></a>
+                <a href="../../public/assets/img/gallery/gallery-9.png" class="venobox" data-gall="gallery-carousel"><img src="{{ asset('assets') }}/img/gallery/gallery-9.png" alt=""></a>
+                <a href="../../public/assets/img/gallery/gallery-10.png" class="venobox" data-gall="gallery-carousel"><img src="{{ asset('assets') }}/img/gallery/gallery-10.png" alt=""></a>
+                <a href="../../public/assets/img/gallery/gallery-11.png" class="venobox" data-gall="gallery-carousel"><img src="{{ asset('assets') }}/img/gallery/gallery-11.png" alt=""></a>
+                <a href="../../public/assets/img/gallery/gallery-12.png" class="venobox" data-gall="gallery-carousel"><img src="{{ asset('assets') }}/img/gallery/gallery-12.png" alt=""></a>
             </div>
 
         </div>
-    </section><!-- End Gallery Section -->
+    </section>--><!-- End Gallery Section -->
 
-    <!-- ======= Testimonials Section ======= -->
+    <!-- ======= Testimonials Section =======
     <section id="testimonials" class="testimonials section-bg">
         <div class="container">
 
@@ -262,7 +250,7 @@
 
                 <div class="testimonial-wrap">
                     <div class="testimonial-item">
-                        <img src="../../public/assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
+                        <img src="{{ asset('assets') }}/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
                         <h3>Saul Goodman</h3>
                         <h4>Ceo &amp; Founder</h4>
                         <p>
@@ -275,7 +263,7 @@
 
                 <div class="testimonial-wrap">
                     <div class="testimonial-item">
-                        <img src="../../public/assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
+                        <img src="{{ asset('assets') }}/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
                         <h3>Sara Wilsson</h3>
                         <h4>Designer</h4>
                         <p>
@@ -288,7 +276,7 @@
 
                 <div class="testimonial-wrap">
                     <div class="testimonial-item">
-                        <img src="../../public/assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
+                        <img src="{{ asset('assets') }}/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
                         <h3>Jena Karlis</h3>
                         <h4>Store Owner</h4>
                         <p>
@@ -301,7 +289,7 @@
 
                 <div class="testimonial-wrap">
                     <div class="testimonial-item">
-                        <img src="../../public/assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
+                        <img src="{{ asset('assets') }}/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
                         <h3>Matt Brandon</h3>
                         <h4>Freelancer</h4>
                         <p>
@@ -314,7 +302,7 @@
 
                 <div class="testimonial-wrap">
                     <div class="testimonial-item">
-                        <img src="../../public/assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
+                        <img src="{{ asset('assets') }}/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
                         <h3>John Larson</h3>
                         <h4>Entrepreneur</h4>
                         <p>
@@ -328,7 +316,7 @@
             </div>
 
         </div>
-    </section><!-- End Testimonials Section -->
+    </section>--><!-- End Testimonials Section -->
 
     <!-- ======= Pricing Section ======= -->
     <section id="pricing" class="pricing">
@@ -340,20 +328,23 @@
             </div>
 
             <div class="row no-gutters">
-
+                <div class="col-lg-4">
+                </div>
                 <div class="col-lg-4 box" data-aos="fade-right">
                     <h3>Free</h3>
                     <h4>$0<span>per month</span></h4>
                     <ul>
-                        <li><i class="bx bx-check"></i> Quam adipiscing vitae proin</li>
-                        <li><i class="bx bx-check"></i> Nec feugiat nisl pretium</li>
-                        <li><i class="bx bx-check"></i> Nulla at volutpat diam uteera</li>
-                        <li class="na"><i class="bx bx-x"></i> <span>Pharetra massa massa ultricies</span></li>
-                        <li class="na"><i class="bx bx-x"></i> <span>Massa ultricies mi quis hendrerit</span></li>
+                        <li><i class="bx bx-check"></i> Guaranteed lifetime free-usage for basic features</li>
+                        <li><i class="bx bx-check"></i> 1 developer portfolio</li>
+                        <li><i class="bx bx-check"></i> Customization Panel</li>
+                        <li class="na"><i class="bx bx-x"></i> <span>Custom sections</span></li>
+                        <li class="na"><i class="bx bx-x"></i> <span>Reviewed and Granted Profile</span></li>
                     </ul>
-                    <a href="#" class="get-started-btn">Get Started</a>
+                    <a href="/register" class="get-started-btn">Get Started</a>
                 </div>
-
+                <div class="col-lg-4">
+                </div>
+                <!--
                 <div class="col-lg-4 box featured" data-aos="fade-up">
                     <h3>Business</h3>
                     <h4>$29<span>per month</span></h4>
@@ -379,13 +370,13 @@
                     </ul>
                     <a href="#" class="get-started-btn">Get Started</a>
                 </div>
-
+                -->
             </div>
 
         </div>
     </section><!-- End Pricing Section -->
 
-    <!-- ======= Frequently Asked Questions Section ======= -->
+    <!-- ======= Frequently Asked Questions Section =======
     <section id="faq" class="faq section-bg">
         <div class="container">
 
@@ -446,7 +437,7 @@
             </div>
 
         </div>
-    </section><!-- End Frequently Asked Questions Section -->
+    </section>--><!-- End Frequently Asked Questions Section -->
 
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact">
@@ -540,7 +531,7 @@
             <div class="row">
 
                 <div class="col-lg-3 col-md-6 footer-contact" data-aos="fade-up">
-                    <h3>Portfolio</h3>
+                    <h3>Appland</h3>
                     <p>
                         A108 Adam Street <br>
                         New York, NY 535022<br>
@@ -590,7 +581,7 @@
 
     <div class="container py-4">
         <div class="copyright">
-            &copy; Copyright <strong><span>Portfolio</span></strong>. All Rights Reserved
+            &copy; Copyright <strong><span>Appland</span></strong>. All Rights Reserved
         </div>
         <div class="credits">
             <!-- All the links in the footer should remain intact. -->
@@ -618,4 +609,4 @@
 
 </body>
 
-</html>                                                                                                                                                                                                                                                                                                                                                                              
+</html>

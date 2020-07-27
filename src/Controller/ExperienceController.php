@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Experience;
 use App\Form\ExperienceType;
 use App\Repository\ExperienceRepository;
+use App\Repository\GeneralRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,17 +19,18 @@ class ExperienceController extends AbstractController
     /**
      * @Route("/", name="experience_index", methods={"GET"})
      */
-    public function index(ExperienceRepository $experienceRepository): Response
+    public function index(ExperienceRepository $experienceRepository, GeneralRepository $generalRepository): Response
     {
         return $this->render('admin/experience/index.html.twig', [
             'experiences' => $experienceRepository->findBy(['userid'=>$this->getUser()->getId()]),
+            'profile' => $generalRepository->findOneBy(['userid'=>$this->getUser()->getId()]),
         ]);
     }
 
     /**
      * @Route("/new", name="experience_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, GeneralRepository $generalRepository): Response
     {
         $experience = new Experience();
         $form = $this->createForm(ExperienceType::class, $experience);
@@ -46,17 +48,19 @@ class ExperienceController extends AbstractController
         return $this->render('admin/experience/new.html.twig', [
             'experience' => $experience,
             'form' => $form->createView(),
+            'profile' => $generalRepository->findOneBy(['userid'=>$this->getUser()->getId()]),
         ]);
     }
 
     /**
      * @Route("/{id}", name="experience_show", methods={"GET"})
      */
-    public function show(Experience $experience): Response
+    public function show(Experience $experience, GeneralRepository $generalRepository): Response
     {
         if($this->getUser()->getId() == $experience->getUserid()) {
         return $this->render('admin/experience/show.html.twig', [
             'experience' => $experience,
+            'profile' => $generalRepository->findOneBy(['userid'=>$this->getUser()->getId()]),
         ]);
         }
         return $this->redirectToRoute('experience_index');
@@ -65,7 +69,7 @@ class ExperienceController extends AbstractController
     /**
      * @Route("/{id}/edit", name="experience_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Experience $experience): Response
+    public function edit(Request $request, Experience $experience, GeneralRepository $generalRepository): Response
     {
         if($this->getUser()->getId() == $experience->getUserid()) {
         $form = $this->createForm(ExperienceType::class, $experience);
@@ -80,6 +84,7 @@ class ExperienceController extends AbstractController
         return $this->render('admin/experience/edit.html.twig', [
             'experience' => $experience,
             'form' => $form->createView(),
+            'profile' => $generalRepository->findOneBy(['userid'=>$this->getUser()->getId()]),
         ]);
         }
         return $this->redirectToRoute('experience_index');

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Certificates;
 use App\Form\CertificatesType;
 use App\Repository\CertificatesRepository;
+use App\Repository\GeneralRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,17 +22,18 @@ class CertificatesController extends AbstractController
     /**
      * @Route("/", name="certificates_index", methods={"GET"})
      */
-    public function index(CertificatesRepository $certificatesRepository): Response
+    public function index(CertificatesRepository $certificatesRepository, GeneralRepository $generalRepository): Response
     {
         return $this->render('admin/certificates/index.html.twig', [
             'certificates' => $certificatesRepository->findBy(['userid'=>$this->getUser()->getId()]),
+            'profile' => $generalRepository->findOneBy(['userid'=>$this->getUser()->getId()]),
         ]);
     }
 
     /**
      * @Route("/new", name="certificates_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, GeneralRepository $generalRepository): Response
     {
 
         $certificate = new Certificates();
@@ -64,18 +66,20 @@ class CertificatesController extends AbstractController
         return $this->render('admin/certificates/new.html.twig', [
             'certificate' => $certificate,
             'form' => $form->createView(),
+            'profile' => $generalRepository->findOneBy(['userid'=>$this->getUser()->getId()]),
         ]);
     }
 
     /**
      * @Route("/{id}", name="certificates_show", methods={"GET"})
      */
-    public function show(Certificates $certificate): Response
+    public function show(Certificates $certificate, GeneralRepository $generalRepository): Response
     {
         if($this->getUser()->getId() == $certificate->getUserid()) {
             return $this->render('admin/certificates/show.html.twig', [
                 'certificate' => $certificate,
-            ]);
+            'profile' => $generalRepository->findOneBy(['userid'=>$this->getUser()->getId()]),
+        ]);
         }
         return $this->redirectToRoute('certificates_index');
     }
@@ -83,7 +87,7 @@ class CertificatesController extends AbstractController
     /**
      * @Route("/{id}/edit", name="certificates_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Certificates $certificate): Response
+    public function edit(Request $request, Certificates $certificate, GeneralRepository $generalRepository): Response
     {
         if($this->getUser()->getId() == $certificate->getUserid()) {
         $form = $this->createForm(CertificatesType::class, $certificate);
@@ -98,6 +102,7 @@ class CertificatesController extends AbstractController
         return $this->render('admin/certificates/edit.html.twig', [
             'certificate' => $certificate,
             'form' => $form->createView(),
+            'profile' => $generalRepository->findOneBy(['userid'=>$this->getUser()->getId()]),
         ]);
         }
         return $this->redirectToRoute('certificates_index');

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+
 use App\Entity\General;
 use App\Form\GeneralType;
 use App\Repository\GeneralRepository;
@@ -24,13 +25,14 @@ class GeneralController extends AbstractController
     {
         return $this->render('admin/general/index.html.twig', [
             'generals' => $generalRepository->findBy(['userid'=>$this->getUser()->getId()]),
+            'profile' => $generalRepository->findOneBy(['userid'=>$this->getUser()->getId()]),
         ]);
     }
 
     /**
      * @Route("/new", name="general_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, GeneralRepository $generalRepository): Response
     {
         $general = new General();
         $form = $this->createForm(GeneralType::class, $general);
@@ -62,6 +64,7 @@ class GeneralController extends AbstractController
         return $this->render('admin/general/new.html.twig', [
             'general' => $general,
             'form' => $form->createView(),
+            'profile' => $generalRepository->findOneBy(['userid'=>$this->getUser()->getId()]),
         ]);
     }
 
@@ -74,28 +77,25 @@ class GeneralController extends AbstractController
     }
 
 
-
-
-
     /**
-     * @Route("/{id}", name="general_show", methods={"GET"})
+     * @Route("/show", name="general_show", methods={"GET"})
      */
-    public function show(General $general): Response
+    public function show( GeneralRepository $generalRepository): Response
     {
-        if($this->getUser()->getId() == $general->getUserid()) {
+        $general = $generalRepository->findOneBy(['userid'=>$this->getUser()->getId()]);
         return $this->render('admin/general/show.html.twig', [
             'general' => $general,
+            'profile' => $generalRepository->findOneBy(['userid'=>$this->getUser()->getId()]),
         ]);
-        }
-        return $this->redirectToRoute('general_index');
+
     }
 
     /**
-     * @Route("/{id}/edit", name="general_edit", methods={"GET","POST"})
+     * @Route("/edit", name="general_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, General $general): Response
+    public function edit(Request $request, GeneralRepository $generalRepository): Response
     {
-        if($this->getUser()->getId() == $general->getUserid()) {
+        $general = $generalRepository->findOneBy(['userid'=>$this->getUser()->getId()]);
         $form = $this->createForm(GeneralType::class, $general);
         $form->handleRequest($request);
 
@@ -108,13 +108,15 @@ class GeneralController extends AbstractController
         return $this->render('admin/general/edit.html.twig', [
             'general' => $general,
             'form' => $form->createView(),
+            'profile' => $generalRepository->findOneBy(['userid'=>$this->getUser()->getId()]),
         ]);
-        }
-        return $this->redirectToRoute('general_index');
+
+        return $this->redirectToRoute('admin');
     }
 
+
     /**
-     * @Route("/{id}", name="general_delete", methods={"DELETE"})
+     * @Route("/{id}", name="experience_delete", methods={"DELETE"})
      */
     public function delete(Request $request, General $general): Response
     {
@@ -124,8 +126,11 @@ class GeneralController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('general_index');
+        return $this->redirectToRoute('experience_index');
     }
+
+
+
 }
 
 

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Education;
 use App\Form\EducationType;
 use App\Repository\EducationRepository;
+use App\Repository\GeneralRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,17 +19,18 @@ class EducationController extends AbstractController
     /**
      * @Route("/", name="education_index", methods={"GET"})
      */
-    public function index(EducationRepository $educationRepository): Response
+    public function index(EducationRepository $educationRepository,GeneralRepository $generalRepository): Response
     {
         return $this->render('admin/education/index.html.twig', [
             'education' => $educationRepository->findBy(['userid'=>$this->getUser()->getId()]),
+            'profile' => $generalRepository->findOneBy(['userid'=>$this->getUser()->getId()]),
         ]);
     }
 
     /**
      * @Route("/new", name="education_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request,GeneralRepository $generalRepository): Response
     {
         $education = new Education();
         $form = $this->createForm(EducationType::class, $education);
@@ -47,17 +49,19 @@ class EducationController extends AbstractController
         return $this->render('admin/education/new.html.twig', [
             'education' => $education,
             'form' => $form->createView(),
+            'profile' => $generalRepository->findOneBy(['userid'=>$this->getUser()->getId()]),
         ]);
     }
 
     /**
      * @Route("/{id}", name="education_show", methods={"GET"})
      */
-    public function show(Education $education): Response
+    public function show(Education $education,GeneralRepository $generalRepository): Response
     {
         if($this->getUser()->getId() == $education->getUserid()) {
         return $this->render('admin/education/show.html.twig', [
             'education' => $education,
+            'profile' => $generalRepository->findOneBy(['userid'=>$this->getUser()->getId()]),
         ]);
         }
         return $this->redirectToRoute('education_index');
@@ -66,7 +70,7 @@ class EducationController extends AbstractController
     /**
      * @Route("/{id}/edit", name="education_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Education $education): Response
+    public function edit(Request $request, Education $education,GeneralRepository $generalRepository): Response
     {
         if($this->getUser()->getId() == $education->getUserid()) {
         $form = $this->createForm(EducationType::class, $education);
@@ -81,6 +85,7 @@ class EducationController extends AbstractController
         return $this->render('admin/education/edit.html.twig', [
             'education' => $education,
             'form' => $form->createView(),
+            'profile' => $generalRepository->findOneBy(['userid'=>$this->getUser()->getId()]),
         ]);
         }
         return $this->redirectToRoute('education_index');
