@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" type="image/ico" href="{{ asset('assets') }}/favicon.ico"/>
+    {% block head %}{% include 'home/head.html.twig' %}{% endblock %}
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{% block description %}{% endblock %}">
+    <meta name="keywords" content="{% block keywords %}{% endblock %}">
+    <title>{% block title %}Anasayfa{% endblock %}</title>
+</head>
+<body id="page-top">
+{% block menu %}{% include 'home/sidebar.html.twig' %}{% endblock %}
+{% block body %} {% endblock %}
+{% block javascript %}{% include 'home/javascripts.html.twig' %}{% endblock %}
+</body>
+</html>

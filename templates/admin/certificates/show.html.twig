@@ -1,0 +1,30 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Certificates{% endblock %}
+
+{% block body %}
+    <h1>Certificates</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ certificate.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ certificate.title }}</td>
+            </tr>
+            <tr>
+                <th>Link</th>
+                <td>{{ certificate.link }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('certificates_index') }}">back to list</a>
+
+    <a href="{{ path('certificates_edit', {'id': certificate.id}) }}">edit</a>
+
+    {{ include('admin/certificates/_delete_form.html.twig') }}
+{% endblock %}

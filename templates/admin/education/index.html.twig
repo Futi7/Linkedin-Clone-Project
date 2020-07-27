@@ -1,0 +1,45 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Education index{% endblock %}
+
+{% block body %}
+    <h1>Education index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Department</th>
+                <th>Score</th>
+                <th>Starting_date</th>
+                <th>Graduation_date</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for education in education %}
+            <tr>
+                <td>{{ education.id }}</td>
+                <td>{{ education.title }}</td>
+                <td>{{ education.department }}</td>
+                <td>{{ education.score }}</td>
+                <td>{{ education.startingDate }}</td>
+                <td>{{ education.graduationDate }}</td>
+                <td>
+                    <a href="{{ path('education_show', {'id': education.id}) }}">show</a>
+                    <a href="{{ path('education_edit', {'id': education.id}) }}">edit</a>
+                    {{ include ('admin/education/_delete_form.html.twig')}}
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('education_new') }}">Create new</a>
+{% endblock %}

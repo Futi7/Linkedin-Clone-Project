@@ -1,0 +1,36 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Workflow index{% endblock %}
+
+{% block body %}
+    <h1>Workflow index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for workflow in workflows %}
+            <tr>
+                <td>{{ workflow.id }}</td>
+                <td>{{ workflow.title }}</td>
+                <td>
+                    <a href="{{ path('workflow_show', {'id': workflow.id}) }}">show</a>
+                    <a href="{{ path('workflow_edit', {'id': workflow.id}) }}">edit</a>
+                    {{ include ('admin/workflow/_delete_form.html.twig')}}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('workflow_new') }}">Create new</a>
+{% endblock %}

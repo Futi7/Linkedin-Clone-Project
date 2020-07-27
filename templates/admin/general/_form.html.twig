@@ -1,0 +1,6 @@
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    <span type="color" id="primary-color" class="btn btn-outline-primary btn-sm">Primary Color</span>
+    <button type="color" id="secondary-color" class="btn btn-outline-primary btn-sm">Secondary Color</button>
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

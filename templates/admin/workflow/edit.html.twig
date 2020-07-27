@@ -1,0 +1,13 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Edit Workflow{% endblock %}
+
+{% block body %}
+    <h1>Edit Workflow</h1>
+
+    {{ include('admin/workflow/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('workflow_index') }}">back to list</a>
+
+    {{ include('admin/workflow/_delete_form.html.twig') }}
+{% endblock %}

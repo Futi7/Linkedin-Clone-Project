@@ -1,0 +1,48 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}General index{% endblock %}
+
+{% block body %}
+    <h1>General index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Instagram</th>
+                <th>Linkedin</th>
+                <th>Github</th>
+                <th>Email</th>
+                <th>Profile_image</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for general in generals %}
+            <tr>
+                <td>{{ general.id }}</td>
+                <td>{{ general.name }}</td>
+                <td>{{ general.surname }}</td>
+                <td>{{ general.instagram }}</td>
+                <td>{{ general.linkedin }}</td>
+                <td>{{ general.github }}</td>
+                <td>{{ general.email }}</td>
+                <td>{{ general.profileImage }}</td>
+                <td>
+                    <a href="{{ path('general_show', {'id': general.id}) }}">show</a>
+                    <a href="{{ path('general_edit', {'id': general.id}) }}">edit</a>
+                    {{ include ('admin/general/_delete_form.html.twig')}}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('general_new') }}">Create new</a>
+{% endblock %}

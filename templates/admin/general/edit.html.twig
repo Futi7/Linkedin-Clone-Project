@@ -1,0 +1,13 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Edit General{% endblock %}
+
+{% block body %}
+    <h1>Edit General</h1>
+
+    {{ include('admin/general/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('general_index') }}">back to list</a>
+
+    {{ include('admin/general/_delete_form.html.twig') }}
+{% endblock %}

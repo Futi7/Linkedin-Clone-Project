@@ -1,0 +1,44 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Experience index{% endblock %}
+
+{% block body %}
+    <h1>Experience index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Company_worked</th>
+                <th>Details</th>
+                <th>Start_date</th>
+                <th>Date_of_quit</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for experience in experiences %}
+            <tr>
+                <td>{{ experience.id }}</td>
+                <td>{{ experience.title }}</td>
+                <td>{{ experience.companyWorked }}</td>
+                <td>{{ experience.details }}</td>
+                <td>{{ experience.startDate }}</td>
+                <td>{{ experience.dateOfQuit }}</td>
+                <td>
+                    <a href="{{ path('experience_show', {'id': experience.id}) }}">show</a>
+                    <a href="{{ path('experience_edit', {'id': experience.id}) }}">edit</a>
+                    {{ include ('admin/experience/_delete_form.html.twig')}}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('experience_new') }}">Create new</a>
+{% endblock %}

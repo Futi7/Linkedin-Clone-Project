@@ -1,0 +1,30 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Interests{% endblock %}
+
+{% block body %}
+    <h1>Interests</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ interest.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ interest.title }}</td>
+            </tr>
+            <tr>
+                <th>Details</th>
+                <td>{{ interest.details }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('interests_index') }}">back to list</a>
+
+    <a href="{{ path('interests_edit', {'id': interest.id}) }}">edit</a>
+
+    {{ include('admin/interests/_delete_form.html.twig') }}
+{% endblock %}

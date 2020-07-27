@@ -1,0 +1,158 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}New Skills{% endblock %}
+
+{% block body %}
+    <h1>Create new Skills</h1>
+
+    <div class="sidebar-search">
+        <div class="input-group custom-search-form">
+            <input type="text" id="search" class="form-control" placeholder="Enter a skill name">
+        </div>
+        <!-- /input-group -->
+    </div>
+    <h3>Skills List</h3>
+    <ul class="nav" id="side-menu">
+        <li>
+            <ul class="nav nav-second-level" id="entitiesNav">
+            </ul>
+        </li>
+    </ul>
+    <br><br><br><br><br>
+    <h3>Added Skills</h3>
+    <ul class="nav" >
+        <li>
+            <ul class="nav nav-second-level" id="addedNav" >
+            </ul>
+        </li>
+    </ul>
+    <div class="col-md-5"></div>
+    <div class="col-md-2"> <button id="submit" class="btn btn-success disabled">{{ button_label|default('Save') }}</button></div>
+
+        <!-- jQuery is necessary -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+    <!--
+    let skillsArray =[] ;
+    function addRow(value) {
+        console.log(value);
+        $(this).parent().remove();
+        var entitySelector = $("#addedNav").html('');
+        entitySelector.append('<li id class="list-inline-item"><i title="'+value+'" style="font-size:70px;!important;" onclick=\'\' class="hover-eff devicons devicons-'+value+'"></i></li>');
+    }
+
+    $(document).on('click', '#li-row', function(){
+
+        var value = $(this).data("value")
+        skillsArray.push(value);
+        $(this).parent().remove();
+        $("#addedNav").append('<li id class="list-inline-item"><i id="li-row-added" data-value="'+value+'" title="'+value+'" style="font-size:70px;!important;"  class="hover-eff devicons devicons-'+value+'"></i></li>');
+
+    });
+
+
+
+    $(document).on('click', '#li-row-added', function(){
+
+        var value = $(this).data("value")
+
+        $(this).parent().remove();
+        $("#entitiesNav").append('<li id class="list-inline-item"><i id="li-row" data-value="'+value+'" title="'+value+'" style="font-size:70px;!important;"  class="hover-eff devicons devicons-'+value+'"></i></li>');
+
+        skillsArray = jQuery.grep(skillsArray, function(val) {
+            return val !== value;
+        });
+    });
+
+
+
+    $(document).on('click', '#submit', function(){
+
+
+        $.ajax({
+            type: "POST",
+            url: "/admin/skills/add_skills",
+            data: {
+                _token: "{{ csrf_token('skills') }}",
+                skills: skillsArray
+
+            },
+            beforeSend: function(response) {
+                console.log(response);
+            },
+
+            success: function(response) {
+                console.log(response);
+                var entitySelector = $("#entitiesNav").html('');
+                var addedSelector = $("#addedNav").html('');
+            },
+
+            error: function(response) {
+                console.log(response);
+            },
+            complete: function(response) {
+            },
+
+
+        });
+    });
+
+
+
+
+
+
+    jQuery(document).ready(function() {
+
+        let searchRequest = null;
+        $("#search").keyup(function() {
+            var minlength = 2;
+            var that = this;
+            var value = $(this).val();
+            var entitySelector = $("#entitiesNav").html('');
+            if (value.length >= minlength ) {
+                if (searchRequest != null)
+                    searchRequest.abort();
+                searchRequest = $.ajax({
+                    type: "GET",
+                    url: "{{ path('ajax_search') }}",
+                    data: {
+                        'q' : value
+                    },
+                    dataType: "text",
+                    success: function(msg){
+                        //we need to check if the value is the same
+                        if (value==$(that).val()) {
+                            var result = JSON.parse(msg);
+                            $.each(result, function(key, arr) {
+                                $.each(arr, function(id, value) {
+                                    if (key == 'entities') {
+                                        if (id != 'error') {
+                                            entitySelector.append('<li class="list-inline-item"><i  id="li-row" data-value="'+value+'"  title="'+value+'"  style="font-size:70px;!important;" class="hover-eff devicons devicons-'+value+'"></i></li>');
+                                        } else {
+                                            entitySelector.append('<li class="errorLi">'+value+'</li>');
+                                        }
+                                    }
+                                });
+                            });
+                        }
+                    }
+                });
+            }
+        });
+
+
+
+
+
+    });
+
+
+
+
+    -->
+</script>
+
+
+{% endblock %}
