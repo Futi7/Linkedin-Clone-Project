@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Skills;
 use App\Form\SkillsType;
 use App\Repository\DeviconsRepository;
+use App\Repository\GeneralRepository;
 use App\Repository\SkillsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -20,17 +21,18 @@ class SkillsController extends AbstractController
     /**
      * @Route("/", name="skills_index", methods={"GET"})
      */
-    public function index(SkillsRepository $skillsRepository): Response
+    public function index(SkillsRepository $skillsRepository, GeneralRepository $generalRepository): Response
     {
         return $this->render('admin/skills/index.html.twig', [
             'skills' => $skillsRepository->findBy(['userid'=>$this->getUser()->getId()]),
+            'profile' => $generalRepository->findOneBy(['userid'=>$this->getUser()->getId()]),
         ]);
     }
 
     /**
      * @Route("/new", name="skills_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, GeneralRepository $generalRepository): Response
     {
         $skill = new Skills();
         $form = $this->createForm(SkillsType::class, $skill);
@@ -48,17 +50,19 @@ class SkillsController extends AbstractController
         return $this->render('admin/skills/new.html.twig', [
             'skill' => $skill,
             'form' => $form->createView(),
+            'profile' => $generalRepository->findOneBy(['userid'=>$this->getUser()->getId()]),
         ]);
     }
 
     /**
      * @Route("/{id}", name="skills_show", methods={"GET"})
      */
-    public function show(Skills $skill): Response
+    public function show(Skills $skill, GeneralRepository $generalRepository): Response
     {
         if($this->getUser()->getId() == $skill->getUserid()) {
         return $this->render('admin/skills/show.html.twig', [
             'skill' => $skill,
+            'profile' => $generalRepository->findOneBy(['userid'=>$this->getUser()->getId()]),
         ]);
         }
         return $this->redirectToRoute('skills_index');
@@ -67,7 +71,7 @@ class SkillsController extends AbstractController
     /**
      * @Route("/{id}/edit", name="skills_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Skills $skill): Response
+    public function edit(Request $request, Skills $skill, GeneralRepository $generalRepository): Response
     {
         if($this->getUser()->getId() == $skill->getUserid()) {
         $form = $this->createForm(SkillsType::class, $skill);
@@ -82,6 +86,7 @@ class SkillsController extends AbstractController
         return $this->render('admin/skills/edit.html.twig', [
             'skill' => $skill,
             'form' => $form->createView(),
+            'profile' => $generalRepository->findOneBy(['userid'=>$this->getUser()->getId()]),
         ]);
         }
         return $this->redirectToRoute('skills_index');

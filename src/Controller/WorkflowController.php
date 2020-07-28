@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Workflow;
 use App\Form\WorkflowType;
+use App\Repository\GeneralRepository;
 use App\Repository\WorkflowRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,17 +19,18 @@ class WorkflowController extends AbstractController
     /**
      * @Route("/", name="workflow_index", methods={"GET"})
      */
-    public function index(WorkflowRepository $workflowRepository): Response
+    public function index(WorkflowRepository $workflowRepository, GeneralRepository $generalRepository): Response
     {
         return $this->render('admin/workflow/index.html.twig', [
             'workflows' => $workflowRepository->findBy(['userid'=>$this->getUser()->getId()]),
+            'profile' => $generalRepository->findOneBy(['userid'=>$this->getUser()->getId()]),
         ]);
     }
 
     /**
      * @Route("/new", name="workflow_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, GeneralRepository $generalRepository): Response
     {
         $workflow = new Workflow();
         $form = $this->createForm(WorkflowType::class, $workflow);
@@ -46,17 +48,19 @@ class WorkflowController extends AbstractController
         return $this->render('admin/workflow/new.html.twig', [
             'workflow' => $workflow,
             'form' => $form->createView(),
+            'profile' => $generalRepository->findOneBy(['userid'=>$this->getUser()->getId()]),
         ]);
     }
 
     /**
      * @Route("/{id}", name="workflow_show", methods={"GET"})
      */
-    public function show(Workflow $workflow): Response
+    public function show(Workflow $workflow, GeneralRepository $generalRepository): Response
     {
         if($this->getUser()->getId() == $workflow->getUserid()) {
         return $this->render('admin/workflow/show.html.twig', [
             'workflow' => $workflow,
+            'profile' => $generalRepository->findOneBy(['userid'=>$this->getUser()->getId()]),
         ]);
         }
         return $this->redirectToRoute('workflow_index');
@@ -65,7 +69,7 @@ class WorkflowController extends AbstractController
     /**
      * @Route("/{id}/edit", name="workflow_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Workflow $workflow): Response
+    public function edit(Request $request, Workflow $workflow, GeneralRepository $generalRepository): Response
     {
         if($this->getUser()->getId() == $workflow->getUserid()) {
         $form = $this->createForm(WorkflowType::class, $workflow);
@@ -80,6 +84,7 @@ class WorkflowController extends AbstractController
         return $this->render('admin/workflow/edit.html.twig', [
             'workflow' => $workflow,
             'form' => $form->createView(),
+            'profile' => $generalRepository->findOneBy(['userid'=>$this->getUser()->getId()]),
         ]);
         }
         return $this->redirectToRoute('workflow_index');
